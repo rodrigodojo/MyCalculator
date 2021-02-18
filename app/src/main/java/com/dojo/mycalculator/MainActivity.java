@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView campoTexto ;
     float numeroA = 0 ;
-    String operacao = "" ;
+    String operacao = "",numb = "" , ScrCurrent = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 calculaNumeros("/");
                 break;
             case R.id.buttonEquals:
-                //mostrarResultado();
+                mostraResultado();
                 break;
             default:
-                String numb;
-                numb = ((Button)view).getText().toString();
+                numb = ((Button) view).getText().toString();
                 getKeyboard(numb);
                 break;
         }
@@ -60,8 +59,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getKeyboard(String str){
-        String ScrCurrent = campoTexto.getText().toString();
-        ScrCurrent += str;
-        campoTexto.setText(ScrCurrent);
+        if(campoTexto.getText().toString().equals("0")){
+            campoTexto.setText(str);
+        }else if(campoTexto.length() < 4){
+            campoTexto.append(str);
+        }
+    }
+
+    public void mostraResultado(){
+        float numeroB = Integer.parseInt(campoTexto.getText().toString());
+        float result = 0;
+        if(operacao == "+"){
+            result = numeroA + numeroB;
+        }
+        if(operacao == "-"){
+            result = numeroA - numeroB;
+        }
+        if(operacao == "x"){
+            result = numeroA * numeroB;
+        }
+        if(operacao == "/"){
+            result = numeroA / numeroB;
+        }
+        campoTexto.setText(String.valueOf(result));
     }
 }
