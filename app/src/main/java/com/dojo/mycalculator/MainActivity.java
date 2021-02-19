@@ -2,6 +2,7 @@ package com.dojo.mycalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView campoTexto ;
     float numeroA = 0 ;
-    String operacao = "",numb = "" , ScrCurrent = "";
+    String operacao = "",aux = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     public void ClicaBotao(View view) {
         switch(view.getId()){
             case R.id.buttonClear:
@@ -46,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 mostraResultado();
                 break;
             default:
-                numb = ((Button) view).getText().toString();
-                getKeyboard(numb);
+                aux = ((Button) view).getText().toString();
+                getKeyboard(aux);
                 break;
         }
     }
@@ -69,16 +71,16 @@ public class MainActivity extends AppCompatActivity {
     public void mostraResultado(){
         float numeroB = Integer.parseInt(campoTexto.getText().toString());
         float result = 0;
-        if(operacao == "+"){
+        if(operacao.equals("+")){
             result = numeroA + numeroB;
         }
-        if(operacao == "-"){
+        if(operacao.equals("-")){
             result = numeroA - numeroB;
         }
-        if(operacao == "x"){
+        if(operacao.equals("x")){
             result = numeroA * numeroB;
         }
-        if(operacao == "/"){
+        if(operacao.equals("/")){
             result = numeroA / numeroB;
         }
         campoTexto.setText(String.valueOf(result));
