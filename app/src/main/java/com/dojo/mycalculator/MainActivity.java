@@ -11,8 +11,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView campoTexto ;
-    float numeroA = 0 ;
-    String operacao = "",aux = "";
+    private float numeroA = 0 ;
+    private String operacao = "",aux = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
